@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      /* 
+      구버전 (CRA 방식)의 폴더 구조
+    my-react-app/
+                │
+                ├── node_modules/            # 프로젝트의 모든 npm 패키지들이 설치되는 폴더(라이브러리 설치되는 폴더)
+                │
+                ├── public/                  # 정적 파일들이 위치하는 폴더
+                │   ├── index.html           # React 애플리케이션의 진입점 HTML 파일   (자바 main() 함수 )
+                │   └── favicon.ico          # 브라우저 탭에 표시될 아이콘
+                │
+                ├── src/                     # React 컴포넌트와 소스 파일들이 위치하는 폴더
+                │   ├── App.js               # **메인 애플리케이션 컴포넌트
+                │   ├── App.css              # App 컴포넌트의 스타일 시트**
+                │   ├── index.js             # ReactDOM.render를 통해 App을 렌더링하는 파일**
+                │   └── index.css            # 전역 스타일 시트**
+                │
+                ├── package.json             # 프로젝트 메타데이터 및 npm 스크립트/의존성 정보
+                └── README.md                # 프로젝트에 대한 설명 파일
+---------------------------------------------------------------------------------------------------------
+            <vite방식 구조>
+            기본 폴더 구조
+
+            my-react-app/
+            ├── node_modules/               # 설치된 패키지
+            ├── public/                     # 정적 파일 위치
+            │   └── vite.svg                # 기본 이미지 (favicon 같은 용도)
+            ├── src/                        # 소스 코드 디렉토리
+            │   ├── assets/                 # 이미지, CSS 등 **정적 자원**
+            │   ├── App.css                 # App 컴포넌트의 스타일
+            │   ├── App.jsx                 # 메인 App 컴포넌트**
+            │   ├── main.jsx                # React DOM 렌더링 시작점**
+            │   └── index.css              # 전역 CSS
+            ├── .gitignore                  # Git에서 제외할 파일 목록
+            ├── index.html                  # **HTML 템플릿 (React가 삽입되는 곳)**, 단일 파일
+            ├── package.json                # 프로젝트 메타 정보 및 스크립트
+            ├── vite.config.js              # Vite 설정 파일
+            └── README.md                   # 프로젝트 설명
+
+            이름만 좀 달라지고 똑같음(js = jsx)
+            index.js가 main.jsx로 바뀜 이름만.
+
+            vscode 개발 (확장 프로그램) : 코드 품질 및 생산성
+            ESLint: 코드 품질을 유지하고 일관된 코딩 스타일을 적용하기 위해 ESLint 플러그인을 설치합니다.
+            Prettier: 코드 포맷터로, 코드를 일관된 스타일로 자동 정리해줍니다. Prettier - Code formatter 플러그인을 설치합니다.
+            
+            하나만 .. 일단 설치
+            React.js code snippets: React 코드 스니펫을 제공하여 빠르게 코드 작성할 수 있습니다.
+                -> 단축키 쓰는 것.
+                rsc : 컴포넌트 자동으로 만들어줌(화살표 함수 방식)
+                rsf : 일반 함수 방식으로 컴포넌트를 만들어줌
+                클래스형 컴포넌트, 함수형 컴포넌트
+                실제는(요즘은) 함수형 컴포넌트만 쓴다
+                function 키워드로 만듬
+
+                React.js code snippets 확장 프로그램을 설치하면?
+                rsc
+                rsf 를 통해서 자동으로 컴포넌트를 생성 할 수 있다.
+
+                목적. 
+                1. 컴포넌트 폴더를 만듬(재사용성이 높은 tolist또는 칸반 보드 카드 같은걸 미리 만듬)
+                    ex) Card.js, Card.jsx, List.js, Button.js
+                2. router : 링크를 만듬(페이지 안에 링크)
+                    router폴더를 만들어서 컴포넌트간의 링크(경로)를 만듬(컴포넌트 간의 이동 경로 제어)
+                3. 컴포넌트 사용의 장점 : 재사용성(1개의 버튼만 만들어서 속성만 바꿔서 사용)
+                    단점 : 여러개의 컴포넌트여서 데이터 관리(전달)이 어렵다..(상태관리가 어려움)
+                        상태관리 해주는.. 리넉스, 리코일, 주스타스 따로 학습해야한다.
+
+        정리)
+        React 실행순서 요약
+        1. npm start
+        2. 브라우져는 public/index.html 브라우져 로드 (id=root 컨테이너)
+        3. ReactDOM src/index.js (진입점,시작점) ... App.js 컴포넌트를 root Dom  랜더링 (적재)
+        3.1 App.js 전체 App에 UI 정의하고 하위 컴포넌트 포함한다
+        4. 컴포넌트들이 랜더링 되고 UI 구성한다 (App.js 하위 컴포넌트)
+        5. 화면으로 .....^^
+            */
+    </script>
+  </head>
+  <body></body>
+</html>

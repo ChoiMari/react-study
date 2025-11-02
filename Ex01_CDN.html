@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      /*
+            react 학습
+            https://www.w3schools.com/react/react_getstarted.asp
+
+            1. node 설치
+            2. node -v   , npm -v
+            3. CLI (command 환경에서)
+            4. react 제공하는 Template 사용해서 프로젝트 구성 (생산성..동일 , 유지보수)
+            5. npx create-react-app ex01-app  
+            -> 비트전에 쓰던 방식(CRA방식)
+            6. cd ex01-app
+            7. npm start 
+            8. localhost:3000 웹 구동
+
+            9. App.js 컴포넌트 >> index.js 통해서 
+            >> index.html 가지고 있는 컨터이너 적재(render, 렌더링)
+            index.html 한 개 가지고 계속 그림(안쪽만 계속 바뀜)
+            10. App.js 가지고 놀자 ... 수정 .. 추가 ... 
+            SPA? index.html에 컴포넌트를 올려놨다 뺐다 하는거라고..
+            기타
+            npm start
+                Starts the development server.
+
+            npm run build (배포)
+                Bundles the app into static files for production.
+
+            npm test
+                Starts the test runner.
+
+            npm run eject (배포된 것 실행)
+                Removes this tool and copies build dependencies, configuration files
+                and scripts into the app directory. If you do this, you can’t go back!
+
+
+           CDN 방식을 통해서 react 구현 가능    
+
+           Babel이란?
+           Babel은 주로 최신 JavaScript(ES6+) 코드를 구형 브라우저에서도 호환되도록 변환하는 
+           트랜스파일러(transpiler, 변환기)입니다. 
+           또한, JSX를 일반 JavaScript로 변환하는 데 사용됩니다. (JSX는 브라우저가 해석 못함. 그래서 변환함)
+           JSX는 React에서 사용되는 JavaScript 확장 문법으로,
+           HTML과 비슷한 구문을 JavaScript에서 사용할 수 있게 해줍니다.
+
+            text/babel의 사용 예
+            기본적으로 브라우저는 HTML 파일 내의 <script> 태그에서 JavaScript 코드를 읽고 실행합니다. 
+            그러나 JSX는 브라우저가 바로 이해할 수 없는 문법이기 때문에 변환이 필요합니다.
+            이때, text/babel을 사용하여 브라우저가 해당 코드를 Babel로 먼저 처리한 후 실행하도록 지시합니다.
+
+
+            현재는 성능 향상을 위해서 vite 도구를 사용해서 프로젝트 생성하고 실행한다
+            실 프로젝트는 vite 생성해서 사용
+            vite사용하려면?
+            1. 프로젝트 생성
+
+            npm create vite@latest my-react-app --template react
+
+
+            npm create vite@latest
+→           최신 버전(@latest)의 Vite를 사용하여 프로젝트를 생성합니다.
+
+            my-react-app
+→           프로젝트 이름을 my-react-app으로 설정합니다.
+
+            --template react
+→           Vite가 제공하는 템플릿 중 React 기반 템플릿을 사용합니다.
+
+
+            cd my-next-app
+            npm run dev
+
+            ----------------------------------------
+            <구버전>
+             Create React App (CRA) 사용 (구버전)
+
+            CRA로 React 프로젝트 만들기
+
+            npx create-react-app my-react-app
+                -> 생성하면서 라이브러리 다운로드함 
+            cd my-react-app
+            npm start
+
+            ---------------------------------------
+            vite
+            CRA(Create React App) 대신 더 빠른 빌드 도구인 Vite
+            # npm
+            npm create vite@latest my-react-app -- --template react
+
+            cd my-react-app
+            npm install
+            -> 노드 모듈에 필요한 라이브러리(lib)파일을 다운로드 받음
+
+            npm run dev
+        */
+    </script>
+  </head>
+  <body>
+<script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="mydiv"></div>
+
+    <script type="text/babel">
+      function Hello() { // 컴포넌트
+        return <h1>Hello World!</h1>;
+      }
+
+      const container = document.getElementById('mydiv');
+      //div태그 찾아서 저장
+      const root = ReactDOM.createRoot(container);
+      root.render(<Hello />)
+      //루트 안쪽에 렌더링 Hello컴포넌트를..
+      //루트를 찾아서 하위에 집어넣는 방식
+    </script>
+</body>
+</html>
+

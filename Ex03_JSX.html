@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      /*
+            1. JSX : https://www.w3schools.com/react/react_jsx.asp
+            2. 사이트에서 기본적인 JSX 문법 확인
+
+           
+
+            Javascript Syatax eXtension 문법 종류
+            1) JSX element
+            JSX element는 자바스크립트 파일 어디에서나 필요한 곳에 HTML처럼 작성할 수 있으며,
+            아래 예시처럼 변수에 저장할 수도 있고, 함수의 인자로 넘길 수도 있다.
+            예시1)
+            const hi = <p>Hi</p>;
+            태그를 변수에 저장 가능하다.
+            (자바스크립트는 불가. jsx는 태그를 변수에 저장 가능)
+
+            예시2) - JSX - Nesting
+
+            정보(데이터) 관리
+            서버(WEB) : 메모리 (session객체)
+            사이트에 100 접속 .... 그러면 서버는  session객체 몇개 : 100개
+            100개 session .. UUID (key) > 클라이언트 전달 > 서버와 클라이언트 동기화 (key) 
+
+            1.session > 사용자ID ...중요 ...보안중요
+
+            2.application (전역자원)
+
+            3.File (text)
+
+            4.DB 서버 (영속적인 데이터)
+
+            클라이언트
+            key 관리 (cookie) : memory , file (소멸타임)
+
+            1.cookie
+            2.local storage
+            ...
+
+            JAVA
+            class Emp{
+                private int empno;
+                public void setEmpno(int empno){ //setter 함수 쓰기전용
+                    this.empno = empno
+                }
+                public int getEmpno(){ //getter 함수  읽기전용
+                    return this.empno;
+                }
+            }
+
+
+
+           >> function Login() {}
+          
+           >> 화살표 표현식(자바스크립트는 1급 객체, 함수 변수에 저장 가능)
+           //useState? 변수를 만듬 
+           // 왜 만들었을까? 어떤 값이 변경되면 함수는 재호출되어 그림을 새로그림
+           함수에 들은건 값을 기억을 못함..(재 호출 시 기존값 기억을 못함..) 
+           useState는 함수가 재호출되더라도, 변수가 초기화 되지 않도록 하기 위해서
+           useState는 반환값이 배열. 배열에 첫번째값, 두번째가 값을 쓸수있는거. 
+           id가 값, setID가 write 
+           함수의 재호출? -> 화면 재구성
+           함수 재호출 맨날 같은값 찍힘(초기화 되어서) 그래서 useState를 써서 상태관리함
+           useState가 값을 가지고 use이펙트는 똘마니라고.. 
+
+           const Login = () => {
+                const [id, setID] = useState("");  //상태관리 (hook) (데이터)
+                //useState 값이 변경되는 Login 재호출 화면에 [ 재랜더링 ] 함수의 호출 
+                
+                const saveUserID = (event) => { //이벤트 객체를 파라미터로 받음
+                    setID(event.target.value); //현재 이벤트가 가지는 value값으로 바꿈
+                };
+                
+                return(
+                        <div>                            //Tag 를 표현 JSX
+                            <input
+                                className="input_e-mail" //JSX className, html에서는 class
+                                type="text"
+                                placeholder="이메일"
+                                value={id} //변수를 태그안에 사용 {}이용
+                                onChange={saveUserID} //JSX 사용하면 스크립트 사용 { 함수 }
+                                //리액트랑 뷰는 이벤트 이렇게 건다.. state값이 바뀌면 함수는 무조건 재호출(그림을 다시 그려야되니까)
+                            ></input>
+                        </div>
+                );
+            }.
+
+
+
+            Javascript 표현식
+            JSX 내부에서 자바스크립트 값을 출력하고 싶다면, { ... JavaScript... } 와 같이 { } 안에 
+            유효한 자바스크립트 표현식을 작성할 수 있음
+            import React from 'react'
+
+            //함수형 컴포넌트 (화살표 표현식 : () => {} )
+            const Greetings = () => {
+                    const name = '김개발';
+
+                return (
+                    <h1>{name}님, Welcome to Wecode!</h1> //JSX <h1> ,  JSX 스크립트 {}
+                );
+            };
+
+            export default Greetings;
+
+            한 번에 여러개의 태그를 내보내진 못한다..(문법)
+                        그래서 1개로 싸서 내보내야함(루트요소)
+                        그럴때 프레그먼트 사용
+                        <></>
+
+            JSX attribute(속성명) - (JSX : className)
+            태그의 attribute name(속성명)은 camelCase로 작성해야하며, 만약에 attribute를 추가하고 
+            싶을 때는 실제 HTML에서 쓰는 attribute name(속성명)과 다를 수 있으니 참고해야 한다. 
+            (예를 들어, HTML에서 class를 주고 싶을 때 원래 속성명은 class이지만, 
+            JSX에서 사용하는 HTML class는 className을 사용해야함)
+            // HTML
+            <h1 class="greetings">Welcome to Wecode!</h1>
+
+            // JSX
+            <h1 className="greetings">Welcome to Wecode!</h1>
+
+            Event 처리
+            React가 아닌 바닐라 자바스크립트에서는, 해당하는 DOM 요소에 직접 접근해 
+            Event Listener를 부착하는 방식으로 이벤트를 처리(권장)했지만, 
+           
+            ex) document.getElementById("btn").addEventListener("click",()=>{  });
+            
+            **JSX에선 직접 이벤트와
+            이벤트 핸들러(Event Handler)를 부여할 수 있는 방식으로 처리해야 한다.
+           onClick={handleClick}
+
+            -> 이벤트는 앞에 on을 붙여 camelCase로 작성
+            -> 문자열이 아닌 함수로 이벤트 핸들러를 전달
+            // JS(권장)
+            const title = document.getElementsByClassName('title')[0];
+            title.addEventListener('click', handleClick);
+
+            // JSX(권장)
+            <h1 className="title" onClick={handleClick}>Welcome to Wecode!</h1>
+            
+            inline styling - (JSX : {{ color: "red", background-color: "yellow" }})
+
+            
+            
+            style 속성은 HTML에서 문자열로 받는 것과 달리 camelCase를 요소로 가지는 자바스크립트 객체를 받는다
+.           아래처럼 
+            JSX에서 inline 태그를 이용해서 styling을 할 경우, 
+            {{ 중괄호를 두 번 겹쳐서 쓰는 형태 }} 로 사용해야 한다.
+            (바깥의 { }는 JSX 문법을 의미하며 안쪽의 { }는 자바스크립트 객체를 의미함)
+            // HTML
+            <h1 style="color:red;background-image:yellow">Welcome to Wecode!</h1>
+
+            // JSX로 css 스타일주기 {{콧수염}}
+            <h1 style={{ color: "red", backgroundImage: "yellow" }}>
+                Welcome to Wecode!
+            </h1>
+
+            🚨 주의사항
+
+        JSX에 style 속성을 사용하는 inline styling은 css보다 성능이 낮고 
+        우선순위가 높기 때문에, 동적으로 계산하여 스타일링하는 경우 이외에는 
+        사용을 지양하는 것이 좋으며 SCSS를 기반으로 스타일링 하는 것을 추천하는 바 있다.)
+        
+        Self-Closing Tag, 혼자서 닫힌다 < />
+        JSX 문법에선 어떤 태그라도 self closing tag를 사용할수 있다. 예를 들어 일반 
+        HTML의 img 태그 처럼 하나만 있는 태그의 경우에는 /으로 끝내지 않아도 되지만
+         **JSX에서는 항상 /으로 끝내줘야 합니다.**(의무, 엄격)
+        // JSX	
+            <div className="login">
+            <div className="logo">
+                <img className="logo_wecode01" src={logo1} alt="위코드 로고1" />
+                <img className="logo_wecode02" src={logo2} alt="위코드 로고2"></img>
+            </div>
+            </div>
+
+        Nested JSX
+        JSX 에서 HTML 태그를 사용할땐 반드시 최상위를 감싸고 있는 하나의 태그가 있어야 한다.
+        // -> Bad : 에러 발생
+        const Greetings = () => {
+            return (
+                <h1>김개발님!</h1>
+                <h2>위코드에 오신 걸 환영합니다!</h2>
+            );
+        }
+            돔형태로 꽂아넣어야하는데 2개를 주면 혼란스럽다고
+            1개로 만들어서 주어야함
+
+        // Good : 정상 동작
+        const Greetings = () => {
+            return (
+                // Nesting Start Tag
+                //CSS 영향이 있다면? :   <>   </>   or react.Fragment 을 사용..!
+                <div>
+                    <h1>김개발님!</h1>
+                    <h2>위코드에 오신 걸 환영합니다!</h2>
+                </div>
+                // Nesting End Tag
+            );
+}
+        🚨 JSX 에서 하나의 태그를 Nesting 으로 만들어야 하는 이유
+        -> Virtual DOM에서 컴포넌트 변화를 효율적으로 비교할 수 있도록 한 
+        컴포넌트는 하나의 DOM 트리 구조로 이루어져야 한다는 규칙이 있기 때문
+        React.Fragment
+        JSX 에서 태그를 감쌀땐 반드시 최상위에 태그를 감싸고 있어야만 하는데, 
+        별도의 태그에 특별한 의미나 스타일이 없다면? 불필요한 요소를 생성하게 되어 관리에 비효율적이다.
+        이때, 유용하게 사용되는 것이 <React.Fragment>이다
+.       (
+            Fragment는 추가적인 DOM element를 생성하지 않고 하나의 컴포넌트 안에
+            여러 요소(자식)를 간단하게 그룹화할 수 있는 기능을 말한다. 
+            또한 축약형<>..</>으로도 Fragment를 구현할수 있다.)
+            // React.Fragment 사용시
+            const Greetings = () => {
+                return (
+                    <React.Fragment>
+                        <h1>김개발님!</h1>
+                        <h2>위코드에 오신 걸 환영합니다!</h2>
+                    </React.Fragment>
+                );
+            }
+
+            // 축약형 Fragment 사용시
+            const Greetings = () => {
+                return (
+                    <>
+                        <h1>김개발님!</h1>
+                        <h2>위코드에 오신 걸 환영합니다!</h2>
+                    </>
+                );
+            }
+
+        */
+    </script>
+  </head>
+  <body></body>
+</html>
