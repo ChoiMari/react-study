@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /*
+            https://www.w3schools.com/react/react_router.asp
+
+            1. react : view 단 페이지 : pages 폴더 ...
+            2. vue   : router 폴더 : 링그 모음     .... views 폴더 : page들
+
+            npm i -D react-router-dom
+            npm i -D react-router-dom@latest
+            별도의 설치
+
+             <BrowserRouter>
+                <Routes>
+                    <Route path="/" element={<Layout />}>
+                    <Route index element={<Home />} />
+                    <Route path="blogs" element={<Blogs />} />
+                    <Route path="contact" element={<Contact />} />
+                    <Route path="*" element={<NoPage />} />
+                    </Route>
+                </Routes>
+             </BrowserRouter>
+
+             const Layout = () => {
+                return (
+                    <>
+                    <nav>
+                        <ul>
+                        <li>
+                            <Link to="/">Home</Link>
+                        </li>
+                        <li>
+                            <Link to="/blogs">Blogs</Link>
+                        </li>
+                        <li>
+                            <Link to="/contact">Contact</Link>
+                        </li>
+                        </ul>
+                    </nav>
+
+                    <Outlet />
+                    </>
+                    )
+                };
+
+               1. Routes : route 그룹화 시키는 컴포넌트 
+               2. route : 랜더링할 컴포넌트를 지정   <Route index element={<Home />} />
+               3. Link : <a href 유사하지만 다른 기능 서버요청 ... Link 기본 페이지 리로드 없이 경로 변경
+                         <Link to="/blogs">Blogs</Link>
+               4. useParams : 동적 라우팅 
+               기본적인 : WEB : www.naver.com?userid=hong&pwd=1004      >> jsp: request.getParam... 
+               기본적인 : WEB : www.naver.com/user/1                    >> 경로 ...   
+
+               ex) /user/:id  ... useParams ... const {id} = useParams();
+
+               5. Outlet  자리에 페이지가 표시 
+         */
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
