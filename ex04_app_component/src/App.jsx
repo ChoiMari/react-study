@@ -6,8 +6,8 @@ import TodoList from './component/TodoList';
 
 function App() {
   const [todos, setTodos] = useState([]); // 빈 배열이 초기값
-  //JAVA getter, setter
-  //useState App() 리렌더링 되어도 값을 유지한다.
+  //JAVA getter(todos), setter(setTodos)
+  //useState : App() 리렌더링 되어도 값을 유지한다.
 
   //값을 추가하는 함수
   const addTodo = (todo) => {
@@ -25,9 +25,10 @@ function App() {
       결과 : [3,5,0,9]가 나온다 
     */
    setTodos(todos.filter((_, i) => i !== index));
+   // i와 index가 같은것만 남겨서 리턴함
    //인덱스와 같지 않은 것만 추출(뽑아냄)
    // _는 무시(아규먼트 안 받겠다)
-
+  // 요소값은 안쓰고 인덱스만 사용
    /*
     const todos ['A', 'B', 'C'];
     const index = 1; // 'B'를 제거
