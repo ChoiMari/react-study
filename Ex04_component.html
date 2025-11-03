@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /*
+        컴포넌트 학습   
+        https://www.w3schools.com/react/react_components.asp
+        
+        재사용 가능한  javascript 덩어리 
+        1. class 형 컴포넌트 - 더이상 쓰이지 않음
+        class Car extends React.Component {
+            render() {
+                        return <h2>Hi, I am a Car!</h2>;
+            }
+        }
+
+        2. 함수형 컴포넌트
+        function Car() {
+            return <h2>Hi, I am a Car!</h2>;
+        }
+
+        const Car = () =>{
+             return <h2>Hi, I am a Car!</h2>;
+        }
+
+        컴포넌트 생성 (UI 요소에 랜더링)
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<Car />);   
+        
+        
+        생산한 컴포넌트는 props 통해서 상위 컴포넌트에서 전달에 데이터를 받을 수 있다
+        App.js 에서 
+        
+        function Car(props) {
+            return <h2>I am a {props.color} Car!</h2>;
+        }
+
+            const root = ReactDOM.createRoot(document.getElementById('root'));
+            root.render(<Car color="red"/>);
+
+
+        컴포넌트 안에 함수형 컴포넌트를 만들어 사용 ...    
+        단점 :재사용성이 떨어진다
+        >> 별도의 파일 >>   List.js   or  List.jsx    
+        장점 : 재사용성이 높아진다
+
+
+        정리)
+        리엑트 컴포넌트 정의: UI 를 구성하는 기본 단위 
+        대표) App.js 
+        개발자 : components  폴더 만듬 : 필요에 따라서 구분한  컴포넌트 생산
+
+        재사용성 , 문제가 발생 : 부모-자식 간에는 부모에 자식 props 를 값을 전달
+
+        리엑트 컴포넌트의 특징
+        1. 재사용성  
+        2. 단일 책임의 원칙 : 단일 기능 (button  만 ,  input 만 )
+        3. 상태관리 ...고민
+        4. 부모 -> 자식 (props)
+
+        //일반 함수 방식
+        function MyComponent() {
+                return <h1>Hello, World!</h1>;
+        }
+
+        //화살표 표현식 사용 권장
+        const MyComponent = () => {
+                return <h1>Hello, World!</h1>;
+        };
+
+        ---------------------------------------
+        import React, { Component } from 'react';
+        class MyComponent extends Component {
+            render() {
+                        return <h1>Hello, World!</h1>;
+                    }
+            }
+
+
+
+       컴포넌트 간에 데이터 전달
+       function Greeting({name}) { or
+       function Greeting(props) {
+                return <h1>Hello, {props.name}!</h1>;
+        }
+
+        function App() {
+        return <Greeting name="Alice" />;
+        }
+
+
+        컴포넌트 상태관리 hook
+        const [count , setCount] = useState(10);
+        useState hook 상태변화에서 다시 랜더링 .... 값을 반영
+        참고 .....
+        React는 컴포넌트의 상태(state)가 바뀌면 그 컴포넌트 함수 자체를 다시 실행해서 새로운 UI를 만들어냅니다.
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
