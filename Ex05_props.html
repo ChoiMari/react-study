@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /*
+        https://www.w3schools.com/react/react_props.asp
+
+
+        샘플코드)
+        1)
+        function Car(props) {
+            return <h2>I am a { props.brand }!</h2>;
+        }
+
+        function Garage() {
+        return (
+            <>
+            <h1>Who lives in my garage?</h1>
+            <Car brand="Ford" />
+            </>
+        );
+        }
+      
+        2) 변수값
+        function Car(props) {
+                return <h2>I am a { props.brand }!</h2>;
+        }
+
+        function Garage() {
+        const carName = "Ford";
+        return (
+            <>
+            <h1>Who lives in my garage?</h1>
+            <Car brand={ carName } />
+            </>
+        );
+        }
+
+        3) 객체
+        function Car(props) {
+            return <h2>I am a { props.brand.model }!</h2>;
+        }
+
+        function Garage() {
+        const carInfo = { name: "Ford", model: "Mustang" };
+        return (
+            <>
+            <h1>Who lives in my garage?</h1>
+            <Car brand={ carInfo } />
+            </>
+        );
+        }
+
+
+        주의사항
+        function myCom(props){  //props  (prop 집합)
+            {props.name}
+        }
+
+        function myCom({name}) { //구조 분행 할당
+            {name}
+        }
+
+        (props)는 모든 props를 포함하는 객체를 그대로 받는 방식이며, 
+        개별 prop에 접근하려면 props.propName을 사용해야 합니다.
+
+        ({props})는 구조 분해 할당을 사용하여 필요한 prop만 개별 변수로 받아 
+        바로 사용할 수 있는 방식입니다.
+
+
+        << 구조분해 할당 사용하기 >>
+
+        App.js
+        function App() {
+                return (
+            <MyComponent name="John Doe" age={30} email="john@example.com" address="123 Main St" />
+            );
+        }
+
+        function MyComponent({ name, age, email }) {
+        return (
+            <div>
+            <p>Name: {name}</p>
+            <p>Age: {age}</p>
+            <p>Email: {email}</p>
+            </div>
+            );
+        }
+
+
+        function MyComponent({ name, age, ...rest }) { 
+        //문법 적으로 많이 사용하지 않아요 ..
+        return (
+            <div>
+            <p>Name: {name}</p>
+            <p>Age: {age}</p>
+            
+            <p>Other props: {JSON.stringify(rest)}</p>
+            </div>
+        );
+        }
+
+        ---------------------------------------------------
+        function App() {
+            // 원본 user 객체
+            const user = {
+                name: "John Doe",
+                birthdate: "1990-01-01",
+                age: 30
+            };
+
+            // 필요한 age 속성만 포함한 객체 생성
+            const ageOnlyUser = { age: user.age };
+
+            return <MyComponent user={ageOnlyUser} />;
+            }
+       
+        받기....
+            function MyComponent({ user: { age } }) {
+                return (
+                    <div>
+                    <p>Age: {age}</p>
+                    </div>
+                );
+                }
+
+
+        -------------------------------------------------------------
+        **객체에서 특정 자원만 받기**
+        function App() {
+            const user = {
+                name: "John Doe",
+                birthdate: "1990-01-01",
+                age: 30
+            };
+
+        return <MyComponent user={user} />;
+        }
+
+        받기
+        function MyComponent({ user: { age } }) {
+        return (
+                <div>
+                <p>Age: {age}</p>
+                </div>
+            );
+        }
+        */
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
