@@ -1,0 +1,124 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /*
+            https://www.w3schools.com/react/react_usereducer.asp
+
+            [useReducer]
+            
+            1. useState 와 같은 논리 (상태값 : 단일값 , 배열 , 객체)
+            2. 좀 더 복잡한 논리 유용 (상태 , 액션....)
+            3. 구성요소
+            3.1 state (상태) : 현재 컴포넌트의 상태
+            3.2 Action : 상태를 변경하기 위해 발생하는 이벤트 
+            (type , payload) 
+            
+            -payload
+            페이로드(영어: payload)는 전송되는 '순수한 데이터'를 뜻한다.
+            페이로드는 전송의 근본적인 목적이 되는 데이터의 일부분
+        
+            -Reducer
+            복잡한 논리를 단순하게 축소해서 처리하는 행위
+
+            * Reduce
+            프로그래밍 분야에서 [입력에 어떤 처리]를 해서 원하는 결과로 
+            [축소시키는 과정]
+
+            -Dispatch
+            배정하다 , 처리하다 , 처리를 맡기다 
+            
+            ex)
+
+            은행     계좌
+
+            계좌에 돈을 입금 >>  은행가서 >> 은행(직원) > 1억 입금해주 > 처리
+
+            Dispatch(Action)   >>>   Reducer(State, Action) 
+
+           참고: https://inpa.tistory.com/entry/JAVA-%E2%98%95-%EC%97%B4%EA%B1%B0%ED%98%95Enum-%ED%83%80%EC%9E%85-%EB%AC%B8%EB%B2%95-%ED%99%9C%EC%9A%A9-%EC%A0%95%EB%A6%AC
+          자바 열거형과 비슷하다
+          
+          
+        정리
+        1. useReducer()는 useState()와 같은 상태 관리, 상태 업데이트 훅(Hook)이다.
+        2. 변경할 값이 많을 때(상태 업데이트) 즉 상태 관리할 데이터가 많아질 때 사용을 고민 (구조화된 방식으로 상태 관리)
+        3. const [state, dispatch] = useReducer(reducer, initialState);   >>>>>>>>>>>>>>>>>>>>>>>>
+        3.1 
+        state        : 상태 이름 (컴포넌트에서 사용할 상태) 
+        dispatch     : 상태(state)를 변경 시 필요한 정보를 전달하는 '함수' 
+        reducer      : dispatch를 확인해서 state를 변경해 주는 '함수' 
+        initialState : state에 전달할 초기 값 
+        
+         
+        문법
+        reducer()는 2가지 인자를 받는다 
+        state : 위에서 선언한 state값 이 들어간다. (초기 값은 당연히 initialState에서 설정한 값)
+        action : 업데이트를 위한 정보를 가지고 있는 '객체' 즉 위에서 선언한 dispatch라고 생각 (주문서)
+
+        function reducer(state, action) {
+            switch (action.type) {
+                case 'PLUS':
+                    return state + 1;
+            case 'MINUS': 
+                    return state - 1;
+            default: return state; 
+                }
+        }
+
+
+        //등록
+        import React, { useReducer } from 'react';
+
+          function reducer(state, action) {
+            switch (action.type) {
+                case 'PLUS':
+                return state + 1;
+                case 'MINUS':
+                return state - 1;
+                default:
+                return state;
+            }
+            }
+
+            function Baking() {
+            // 3을 value 저장
+            // 위에 선언했던 값을 변경하는 reducer 함수를 넣어주기!
+            // reducer속 로직들을 실행시킬 명령어가 담겨있는 dispatch 선언
+            const [value, dispatch] = useReducer(reducer, 3);
+            //3이 value
+            //내가 부를때 쓰는게 dispatch
+            //이게 reducer부르는거랑 같다고 함
+
+            const onPlus = () => {
+                dispatch({ type: 'PLUS' });
+            };
+
+            const onMinus = () => {
+                dispatch({ type: 'MINUS' });
+            };
+
+            return (
+                <div>
+                <h1>{number}</h1>
+                <button onClick={onPlus}>+1</button>
+                <button onClick={onMinus}>-1</button>
+                </div>
+            );
+            }
+
+            export default Baking;
+
+          
+          
+           */
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
