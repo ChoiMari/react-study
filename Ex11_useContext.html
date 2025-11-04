@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+/*
+        https://www.w3schools.com/react/react_usecontext.asp
+
+        컴포넌트가 여러가 있는 경우
+        react 부모 -> 자식 (props)
+              자식 -> 부모 (함수 호출)
+
+              todolist > 부모 (배열 할일목록) > 추가 제거 부모 함수 > props > 자식 > 부모 함수 호출
+
+
+        vue   부모 -> 자식 (props)
+              자식 -> 부모 (emit)      
+
+
+        APP (데이터 : App2 필요)
+          |
+      App1 - App1-1
+     |        |
+   App2      App3
+
+   App(App1(App2)) > App 자원 .... App2 손자에게만 
+   해석) App1 은 자원은 사용하지도 않는다  props  받아서 다시 App2 전달
+   This is called "prop drilling". 부른다
+
+   해결) useContext .. 
+
+   import { useState, createContext } from "react";
+   
+   const UserContext = createContext()
+
+   return (
+    <UserContext.Provider value={user}>
+      <h1>{`Hello ${user}!`}</h1>
+      <Component2 user={user} />
+    </UserContext.Provider>
+  );
+
+  사용방법:
+  function Component5() {
+  const user = useContext(UserContext);
+
+  return (
+    <>
+      <h1>Component 5</h1>
+      <h2>{`Hello ${user} again!`}</h2>
+    </>
+  );
+}
+
+useContext 장점  : 코드 간결함  (하위 에 하위 컴포넌트 props 전달 간결하게)
+                 : 상태 공유를 쉽게 할 수 있다 .....
+                   주의사항 : 코드 가독성 (..약간)     
+
+
+*/
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

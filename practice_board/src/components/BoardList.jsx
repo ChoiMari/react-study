@@ -21,11 +21,13 @@ const BoardList = () => {
       const res = await getBoardList(page, 10);
       console.log("📥 서버 응답:", res.data);
 
-      if (res.data.success && Array.isArray(res.data.data)) {
-        setBoards(res.data.data);
-        setTotalCount(res.data.data.length);
+      if (res.data.success && res.data.data){
+        const { boards, totalCount } = res.data.data; // 구조분해로 꺼내기
+        setBoards(boards || []);
+        setTotalCount(totalCount || 0);
       } else {
-        setBoards([]);
+          setBoards([]);
+          setTotalCount(0);
       }
     } catch (err) {
       console.error("목록 로드 실패:", err);

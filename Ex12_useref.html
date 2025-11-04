@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /*
+          https://www.w3schools.com/react/react_useref.asp
+
+          해석) why useRef
+
+          함수형 컴포넌트 > 랜더링시  > 재 호출 > 함수가 가지는 지역변수 > 초기화
+          원하는 값을 유지 > useState > set 값이 변경 > 유지 > 재랜더링 ....
+
+          값을 유지하고 ... 재랜더링이 안되었으면 좋겠다.. 
+          (현재 값을 바로 사용하는 것이 나중에 어떤 한번 사용 ...누적값 값)
+          답) useRef
+
+          const ref = useRef(value);
+
+          내부적으로 :    {current : value}
+
+          ex)
+          const ref = useRef("hello world");
+          >> {current:"hello world"}
+
+          키(current)와 값("hello world")
+          ref.current하면 값에 접근 가능 ->  "hello world"
+          이건 state가 바뀌어도 계속 가지고 있는다고 함
+          누적할때마다 랜더링하는게 맘에 안들어서 누적의 마지막 출력만 하기 위해서
+          쓴다고 함
+
+          ref.current = "change"
+
+          hello world 가 >> change
+
+
+          State > 랜더링 > 컴포넌트 내부 변수 초기화
+          Ref   > No 랜더링 > 값을 유지
+
+          그런 성질을 이용하면
+
+          2. DOM 요소에 접근 
+          Document.querySelector();  대체하는 기능 
+
+
+         useRef 란 녀석이  
+         변화는 감지하지만 랜더링을 발생하지 말아야 하는 경우 사용한다.
+
+         값의 변화 랜더링 ...
+         useState
+         지역변수
+         useRef
+        */
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
