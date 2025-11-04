@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+/*
+            https://www.w3schools.com/react/react_useeffect.asp
+
+            useEffect
+
+            Mount : 화면에 첫 랜더링 
+            update : 다시 랜더링 (useState  값의 변화)
+            Unmount : 화면에 사라질때 
+
+            useEffect (콜백함수,[의존성 배열])
+            
+            1. useEffect(()=>{ 작업 });  랜더링 될때마다
+
+            2. useEffect(()=>{ 작업 }, [value,value2]);  화면에 첫 랜터링 될대 실행 ,  value 값이 바뀔때 실행
+            
+            3. useEffect(()=>{ 작업 }, []);     화면에 첫 랜터링  한번 실행  (초기화화)
+
+            4. Clean up 정리 작업
+               useEffect (()=> { 구독  return()=>{ 구독해지  }} ,[])
+
+            function Timer() {
+                const [count, setCount] = useState(0);
+
+                useEffect(() => {
+                    let timer = setTimeout(() => {
+                    setCount((count) => count + 1);
+                }, 1000);
+
+                return () => clearTimeout(timer)  //요기 구독해지
+                }, []);
+
+                return <h1>I've rendered {count} times!</h1>;
+}
+
+
+         useContext 
+         useRef  저장 (랜더링 하지 않고 )
+         useReducer
+         ....
+
+        */
+</script>
+<body>
+    
+</body>
+</html>

@@ -1,21 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { getBoardList, deleteBoard } from "../api/boardApi";
 import { useNavigate } from "react-router-dom";
+import "../styles/BoardList.css";
 
 const BoardList = () => {
-  const [boards, setBoards] = useState([]); // 게시글 목록
-  const [page, setPage] = useState(1); // 현재 페이지
-  const [totalCount, setTotalCount] = useState(0); // 총 게시글 수
+  const [boards, setBoards] = useState([]);
+  const [page, setPage] = useState(1);
+  const [totalCount, setTotalCount] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  // 페이지 변경 시마다 호출
   useEffect(() => {
     loadBoards();
   }, [page]);
 
-  // ✅ 게시글 목록 불러오기
   const loadBoards = async () => {
     try {
       setLoading(true);
@@ -24,7 +23,7 @@ const BoardList = () => {
 
       if (res.data.success && Array.isArray(res.data.data)) {
         setBoards(res.data.data);
-        setTotalCount(res.data.data.length); // 백엔드에서 totalCount 안줄 때 임시 처리
+        setTotalCount(res.data.data.length);
       } else {
         setBoards([]);
       }
@@ -36,7 +35,6 @@ const BoardList = () => {
     }
   };
 
-  // ✅ 게시글 삭제
   const handleDelete = async (id) => {
     if (!window.confirm("정말 삭제하시겠습니까?")) return;
     try {
@@ -49,38 +47,35 @@ const BoardList = () => {
     }
   };
 
-  // ✅ 게시글 상세 보기
   const handleDetail = (id) => {
     navigate(`/detail/${id}`);
   };
 
-  if (loading) return <p>⏳ 게시글을 불러오는 중...</p>;
-  if (error) return <p>❌ {error}</p>;
+  if (loading) return <div className="loading-message">⏳ 게시글을 불러오는 중...</div>;
+  if (error) return <div className="error-message">❌ {error}</div>;
 
   return (
-    <div style={{ width: "70%", margin: "30px auto" }}>
-      <h2>게시판 목록</h2>
-
-      {/* 글쓰기 버튼 */}
-      <div style={{ textAlign: "right", marginBottom: "10px" }}>
-        <button onClick={() => navigate("/create")}>글쓰기</button>
+    <div className="board-list-container">
+      <div className="board-header">
+        <h2>게시판 목록</h2>
+        <button className="write-button" onClick={() => navigate("/create")}>
+          ✏️ 글쓰기
+        </button>
       </div>
 
-      {/* 게시판 테이블 */}
-      <table border="1" width="100%" cellPadding="10">
+      <table className="board-table">
         <thead>
           <tr>
-            <th>ID</th>
-            <th>제목</th>
-            <th>작성자</th>
-           
-            <th>관리</th>
+            <th style={{ width: "10%" }}>ID</th>
+            <th style={{ width: "50%" }}>제목</th>
+            <th style={{ width: "20%" }}>작성자</th>
+            <th style={{ width: "20%" }}>관리</th>
           </tr>
         </thead>
         <tbody>
           {boards.length === 0 ? (
             <tr>
-              <td colSpan="5" style={{ textAlign: "center" }}>
+              <td colSpan="4" className="empty-message">
                 등록된 게시글이 없습니다.
               </td>
             </tr>
@@ -88,18 +83,19 @@ const BoardList = () => {
             boards.map((b) => (
               <tr key={b.id}>
                 <td>{b.id}</td>
-                <td
-                  style={{ cursor: "pointer", color: "blue" }}
-                  onClick={() => handleDetail(b.id)}
-                >
+                <td className="title-cell" onClick={() => handleDetail(b.id)}>
                   {b.title}
                 </td>
                 <td>{b.writer}</td>
-               
-                <td>
-                  <button onClick={() => navigate(`/edit/${b.id}`)}>수정</button>
+                <td className="action-buttons">
+                  <button 
+                    className="edit-button"
+                    onClick={() => navigate(`/edit/${b.id}`)}
+                  >
+                    수정
+                  </button>
                   <button
-                    style={{ marginLeft: "5px" }}
+                    className="delete-button"
                     onClick={() => handleDelete(b.id)}
                   >
                     삭제
@@ -111,20 +107,12 @@ const BoardList = () => {
         </tbody>
       </table>
 
-      {/* 페이지네이션 */}
-      <div style={{ marginTop: "15px", textAlign: "center" }}>
+      <div className="pagination">
         {Array.from({ length: Math.ceil(totalCount / 10) }, (_, i) => (
           <button
             key={i}
             onClick={() => setPage(i + 1)}
-            style={{
-              margin: "0 3px",
-              backgroundColor: page === i + 1 ? "#007BFF" : "#f0f0f0",
-              color: page === i + 1 ? "#fff" : "#000",
-              border: "none",
-              padding: "5px 10px",
-              cursor: "pointer",
-            }}
+            className={page === i + 1 ? "active" : ""}
           >
             {i + 1}
           </button>
