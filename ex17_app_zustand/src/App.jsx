@@ -1,11 +1,16 @@
 import './App.css'
+import TodoInput from './components/TodoInput'
+import TodoList from './components/TodoList'
 
 function App() {
 
-  return (
-    <>
 
-    </>
+  return (
+     <div className='App'>
+        <h1>Zustand TodoList</h1>
+        <TodoInput />
+        <TodoList />
+     </div>
   )
 }
 
