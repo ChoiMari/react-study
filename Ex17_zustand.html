@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /*
+        Zustand는 가벼운 상태 관리 라이브러리로, 
+        간단한 API를 통해 React 애플리케이션에서 전역 상태를 
+        쉽게 관리할 수 있습니다. Redux와 달리 보일러플레이트 코드가 적고 
+        설정이 간단하다
+
+        보일러플레이트(Boilerplate)란?
+        보일러플레이트는 프로그래밍에서 반복적으로 사용되는 
+        **표준화된 코드 조각**을 의미합니다.
+        주요 특징
+
+        재사용성: 여러 프로젝트에서 거의 변경 없이 반복해서 사용됨
+        표준화: 특정 작업을 수행하기 위한 기본 구조나 템플릿
+        필수적이지만 단조로움: 꼭 필요하지만 창의성이 별로 필요 없는 코드
+
+        npm install zustand
+
+        // 플로그인 
+        // Zustand Snippet
+        //스니핏 : zst / zus
+
+        상태 관리 스토어 생성
+
+
+        // src/store/useCounterStore.js
+        import { create } from 'zustand';
+
+        // 상태 관리 스토어 정의
+        const useCounterStore = create((set) => (//set도 함수
+        { 
+        count: 0, // 상태 변수
+
+        // 상태 업데이트 함수 (actions)
+        increase: () => set((state) => ({ count: state.count + 1 })),
+        decrease: () => set((state) => ({ count: state.count - 1 })),
+        reset: () => set({ count: 0 }),
+        }
+        )
+        );
+
+        export default useCounterStore;
+
+        스토어에서 상태를 가져오고, 업데이트 함수를 컴포넌트에서 사용하는 방법
+
+        // src/components/Counter.js
+        import React from 'react';
+        import useCounterStore from '../store/useCounterStore';
+
+        const Counter = () => {
+        const { count, increase, decrease, reset } = useCounterStore(); // 상태와 함수 가져오기
+
+        return (
+            <div style={{ textAlign: 'center', marginTop: '20px' }}>
+            <h2>Counter: {count}</h2>
+            <button onClick={increase}>Increase</button>
+            <button onClick={decrease}>Decrease</button>
+            <button onClick={reset}>Reset</button>
+            </div>
+        );
+        };
+
+        export default Counter;
+        Counter 컴포넌트를 App.js에 연결
+
+        // src/App.js
+        import React from 'react';
+        import Counter from './components/Counter';
+
+        const App = () => (
+        <div>
+            <h1>Zustand Counter Example</h1>
+            <Counter />
+        </div>
+        );
+
+        export default App;
+        참고
+
+        const useStore = create((set, get) => ({
+        count: 0,
+        increase: () => set((state) => ({ count: state.count + 1 })),
+        log: () => {
+            const current = get().count;
+            console.log("현재 count는", current);
+        },
+        }));
+
+        set → 상태 업데이트용
+        get → 현재 상태 조회용
+        import { create } from 'zustand';
+
+        const useStore = create((set, get) => ({
+        count: 0,
+        increase: () => set((state) => ({ count: state.count + 1 })),
+        }));
+
+        set → 상태를 업데이트하기 위한 함수, **파라미터(parameter)**입니다.
+        get → 현재 상태를 가져오는 함수, 역시 **파라미터(parameter)**입니다.
+       
+        =====================================
+        게시판 목록에서 사용되는 전역 상태 관리
+        const useStore = create((set) => ({
+        todos: [],
+        addTodo: (title) => set((state) => ({
+            todos: [...state.todos, { id: Date.now(), title, completed: false }]
+        }))
+        }));
+
+        import { create } from "zustand";
+
+        const useTodoStore = create((set) => ({
+        todos: [],
+        addTodo: (title) =>
+            set((state) => ({
+            todos: [...state.todos, { id: Date.now(), title, completed: false }],
+            })),
+        removeTodo: (id) =>
+            set((state) => ({
+            todos: state.todos.filter((todo) => todo.id !== id),
+            })),
+        toggleTodo: (id) =>
+            set((state) => ({
+            todos: state.todos.map((todo) =>
+                todo.id === id ? { ...todo, completed: !todo.completed } : todo
+            ),
+            })),
+        }));
+
+        export default useTodoStore;
+       
+        */
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

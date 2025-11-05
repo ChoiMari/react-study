@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /*
+        개발자가 직접 훅을 만들수 있다. - 커스텀 훅
+        2가지 밖에 못씀 -> useState, useEffect
+
+            https://www.w3schools.com/react/react_customhooks.asp
+
+            useCustom 
+           1. 재사용 가능한 논리나 기존 Hook 캡슐화  > Hook 
+
+           아래 논리가 모든 페이지에 적용 ...
+            const [data, setData] = useState(null);
+            useEffect(() => {
+                fetch("https://jsonplaceholder.typicode.com/todos")
+                .then((res) => res.json())
+                .then((data) => setData(data));
+            }, []);
+
+            customHook  만들기
+            useFetch.js .....
+
+            import { useState, useEffect } from "react";
+
+            const useFetch = (url) => {
+            const [data, setData] = useState(null);
+
+            useEffect(() => {
+                fetch(url)
+                .then((res) => res.json())
+                .then((data) => setData(data));
+            }, [url]);
+
+            return [data];
+            };
+
+            export default useFetch;
+
+
+            사용자 정의 Hook
+            const [data] = useFetch("https://jsonplaceholder.typicode.com/todos");
+
+
+            1. 재사용성 : 
+            2. 구조화 (공통로직 ... 처리 분리) , 공통로직분리가능
+
+            논리와 기존 Hook 결합해서 나만의 Hook
+
+            function useEat(food) {
+                //원하면
+                useState 
+                useEffect 상태 관리
+
+                return [eat , setFood]
+            }
+            이렇게 만들어진 Hook 재사용
+            
+            useButton
+            useFetch
+            useImage ...
+            
+           [[ Custom Hook: ]]
+
+            1. Custom Hook은 재사용 가능한 로직을 캡슐화하는 데 사용됩니다. 
+               이를 통해 여러 컴포넌트에서 공통적으로 사용되는 상태 관리나 부수 효과를 손쉽게 공유할 수 있습니다.
+            
+            2. Custom Hook은 React의 기본 훅들(useState, useEffect 등)을 조합하여 더 복잡한 로직을 구현할 수 있습니다.
+
+            3. Custom Hook은 UI를 렌더링하지 않습니다. 
+               오직 로직(상태 관리, 데이터 페칭, 이벤트 처리 등)만을 다룹니다.
+               예를 들어, 특정 API 호출 로직이나 폼 상태 관리 로직을 
+               Custom Hook으로 만들어 여러 컴포넌트에서 재사용할 수 있습니다.
+
+            function useCounter(initialValue = 0) {
+                    const [count, setCount] = useState(initialValue);
+
+                    const increment = () => setCount(count + 1);
+                    const decrement = () => setCount(count - 1);
+
+                return { count, increment, decrement };
+            }
+
+
+
+           [[ Component: ]] 
+
+           1. Component는 UI를 구성하는 단위입니다. 사용자에게 보이는 화면을 정의하고, 상태에 따라 렌더링 결과를 변경합니다.
+
+           2. Component는 상태 관리와 UI 렌더링을 결합하여 전체적인 사용자 인터페이스를 구성합니다.
+
+           3. 컴포넌트는 다른 컴포넌트를 포함할 수 있으며, 계층적인 구조를 형성합니다.
+              예를 들어, 버튼, 입력 필드, 리스트 아이템 등은 모두 컴포넌트로 정의되어 UI를 구성합니다.
+       
+            function Counter() {
+                const { count, increment, decrement } = useCounter(); // Using a custom hook
+
+                return (
+                    <div>
+                    <p>Count: {count}</p>
+                    <button onClick={increment}>Increment</button>
+                    <button onClick={decrement}>Decrement</button>
+                    </div>
+                );
+}
+        */
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,26 @@
+import { useState } from 'react'
+import './App.css'
+
+function App() {
+  const [inputValue, setInputValue] = useState('');
+
+  const handleChange = (e) => {
+    setInputValue(e.target.value); //값 변경
+    //이벤트를 일으킨 타겟의 value 값으로..
+  }
+
+  const handleSubmin = () => {
+    alert("inputValue : " + inputValue);
+    setInputValue('');
+  }
+
+  return (
+    <div className='App'>
+      <h3>useInput</h3>
+      <input type={inputValue} onChange={handleChange} />
+      <button onClick={handleSubmin}>클릭</button>
+    </div>
+  )
+}
+
+export default App
