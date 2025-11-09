@@ -141,7 +141,7 @@ export default function Register() {
               name="username"
               value={form.username}
               onChange={handleChange}
-              placeholder="영문+숫자 4~20자"
+              placeholder="영문,숫자 4~20자"
               style={{ flex: 1 }}
             />
             <button type="button" onClick={handleCheck}>
