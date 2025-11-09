@@ -40,8 +40,8 @@ export const readNotification = async (id) => {
 
 /**
  * 📭 전체 알림 읽음 처리
- * PATCH /api/notify/read-all
+ * PATCH /api/notify/read/all
  */
 export const readAllNotifications = async () => {
-  await http.patch("/api/notify/read-all", null, { withCredentials: true });
+  await http.patch("/api/notify/read/all", null, { withCredentials: true });
 };

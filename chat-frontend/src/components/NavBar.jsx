@@ -1,6 +1,6 @@
 // src/components/NavBar.jsx
 import { useCallback, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom"; // ✅ useLocation 추가
 import { useAuth } from "../context/useAuth";
 import { useNotification } from "../context/useNotification";
 import useNotificationSocket from "../hooks/useNotificationSocket";
@@ -10,36 +10,68 @@ export default function NavBar() {
   const { loginUser, logout } = useAuth();
   const { notifyCount, setCount, increase, reset } = useNotification();
   const navigate = useNavigate();
+  const location = useLocation(); // ✅ 현재 경로 확인용
 
-  // ✅ 실시간 웹소켓 알림 수신 (자동 증가)
+  /**
+   * ✅ 실시간 WebSocket 알림 처리
+   * - type: "NEW" → 알림 개수 증가 (단, 알림 페이지 제외)
+   * - type: "READ" → 알림 개수 감소
+   * - type: "READ_ALL" → 전체 초기화
+   */
   useNotificationSocket(
     loginUser?.id,
     useCallback(
-      (notify) => {
-        increase();
-        console.log("새 알림:", notify);
+      (event) => {
+        console.log("🔔 알림 이벤트 수신:", event);
+
+        switch (event.type) {
+          case "NEW":
+            // ✅ 알림 페이지에 있으면 뱃지 증가하지 않음
+            if (location.pathname === "/notifications") {
+              console.log("📍 알림 페이지 내 → NavBar 카운트 증가 생략");
+              break;
+            }
+            increase();
+            break;
+
+          case "READ":
+            setCount((prev) => Math.max(prev - 1, 0));
+            break;
+
+          case "READ_ALL":
+            reset();
+            break;
+
+          default:
+            console.warn("⚠️ 알 수 없는 알림 이벤트:", event);
+            break;
+        }
       },
-      [increase]
+      [increase, reset, setCount, location.pathname] // ✅ 경로를 의존성에 포함
     )
   );
 
-  // ✅ 로그인 시 알림 개수 초기화
+  /**
+   * ✅ 로그인 후 알림 개수 초기화
+   * - 서버에서 읽지 않은(isRead = false) 알림만 카운트
+   */
   useEffect(() => {
     if (loginUser) {
       (async () => {
         try {
           const res = await getNotifications();
 
-          // 응답이 배열인지 확인 (배열 아니면 .data 내부 확인)
+          // 응답이 배열인지 확인 (백엔드 DTO 구조 대응)
           const list = Array.isArray(res)
             ? res
             : Array.isArray(res.data)
             ? res.data
             : [];
 
-          setCount(list.filter((n) => !n.isRead).length);
+          const unreadCount = list.filter((n) => !n.isRead).length;
+          setCount(unreadCount);
         } catch (e) {
-          console.error("알림 조회 실패", e);
+          console.error("알림 목록 조회 실패:", e);
           setCount(0);
         }
       })();
@@ -48,7 +80,9 @@ export default function NavBar() {
     }
   }, [loginUser, setCount, reset]);
 
-  // ✅ 로그아웃 처리
+  /**
+   * ✅ 로그아웃 처리
+   */
   const handleLogout = async () => {
     try {
       await logout();
@@ -58,6 +92,9 @@ export default function NavBar() {
     }
   };
 
+  /**
+   * ✅ 렌더링 영역
+   */
   return (
     <nav
       style={{
@@ -70,6 +107,7 @@ export default function NavBar() {
         fontSize: "1rem",
       }}
     >
+      {/* 좌측 로고 / 메인 이동 */}
       <div
         style={{ fontWeight: "bold", cursor: "pointer" }}
         onClick={() => navigate("/")}
@@ -77,6 +115,7 @@ export default function NavBar() {
         WebSocket Chat
       </div>
 
+      {/* 중앙 메뉴 */}
       <div style={{ display: "flex", gap: "20px", alignItems: "center" }}>
         <Link to="/" style={{ color: "white", textDecoration: "none" }}>
           홈
@@ -118,6 +157,7 @@ export default function NavBar() {
         )}
       </div>
 
+      {/* 우측 유저 정보 */}
       <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
         {loginUser ? (
           <>
