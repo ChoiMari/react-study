@@ -5,6 +5,15 @@
 import {useState} from 'react';
 import './App.css';
 
+const Bulb = ({light}) => {
+  return (
+    <div>
+      {light === "ON" ? (<h1 style={{backgroundColor: "pink"}}>ON</h1>) : (<h1 style={{backgroundColor:"green"}}>OFF</h1>)}
+    </div>
+  );
+
+}
+
 function App() {
   const state1 = useState(); 
   // 리액트에서 상태를 관리하기 위해서 제공하는 내장 함수(Hook)를 
@@ -48,6 +57,7 @@ function App() {
     
   return (
     <>
+      <Bulb light={light}/>
       <div>
         <h1 onMouseOver={()=>{
           setLight(light === "OFF" ? "ON" : "OFF");
